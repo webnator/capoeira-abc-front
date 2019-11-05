@@ -38,6 +38,9 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created() {
+    this.$store.dispatch('songs/getCategories')
   }
 }
 </script>
