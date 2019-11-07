@@ -1,6 +1,6 @@
 <template>
   <div class="categories-list">
-  
+
     <v-row v-if="loading" :align="'center'">
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
@@ -42,7 +42,8 @@ export default {
         this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1)
       } else {
         this.selectedCategories.push(category)
-      } 
+      }
+      this.$store.dispatch('songs/getSongs', { category: this.selectedCategories })
     }
   },
   computed: {

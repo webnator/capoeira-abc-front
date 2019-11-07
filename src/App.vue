@@ -69,6 +69,17 @@ export default {
 
       <v-spacer></v-spacer>
 
+      <v-autocomplete
+        placeholder="Search"
+        :items="songNames"
+        append-outer-icon="mdi-magnify"
+        prepend-icon="mdi-music-clef-treble"
+        :clearable="true"
+        :dense="true"
+        :hide-no-data="true"
+      ></v-autocomplete>
+
+      <v-spacer></v-spacer>
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -81,9 +92,29 @@ export default {
     <v-content>
       <router-view/>
     </v-content>
-    
+
   </v-app>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  name: 'App',
+  data() {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapState('songs', [
+      'songs'
+    ]),
+    songNames() {
+      return this.songs.map(song => song.title)
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
