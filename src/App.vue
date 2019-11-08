@@ -71,13 +71,20 @@ export default {
 
       <v-autocomplete
         placeholder="Search"
-        :items="songNames"
+        :items="songList"
+        item-text="title"
+        item-value="slug"
         append-outer-icon="mdi-magnify"
         prepend-icon="mdi-music-clef-treble"
         :clearable="true"
         :dense="true"
         :hide-no-data="true"
+        :loading="isLoading"
+        :search-input.sync="search"
       ></v-autocomplete>
+
+      <!-- :loading="isLoading"
+        :search-input.sync="search" -->
 
       <v-spacer></v-spacer>
       <v-btn
@@ -98,20 +105,39 @@ export default {
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
+
 export default {
   name: 'App',
   data() {
     return {
-
+      songList: [],
+      isLoading: false,
+      search: null
     }
   },
   computed: {
     ...mapState('songs', [
       'songs'
-    ]),
-    songNames() {
-      return this.songs.map(song => song.title)
-    }
+    ])
+  },
+  watch: {
+    search (val) {
+      // Items have already been requested
+      if (this.isLoading) return
+
+      this.isLoading = true
+
+      // Lazily load input items
+      axios.get('http://localhost:8081/api/v1/songs', { params: { search: val } })
+        .then(res => {
+          this.songList = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.isLoading = false))
+    },
   }
 }
 </script>
