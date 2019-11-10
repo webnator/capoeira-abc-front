@@ -8,20 +8,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 
 export default {
   name: 'SongsList',
+  props: [ 'songs' ],
   data() {
     return { }
-  },
-  methods: {
-
-  },
-  computed: {
-    ...mapState('songs', [
-      'songs'
-    ])
   }
 }
 </script>

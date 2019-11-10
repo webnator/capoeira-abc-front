@@ -1,7 +1,7 @@
 <template>
   <div class="categories-list">
 
-    <v-row v-if="loading" :align="'center'">
+    <v-row v-if="isLoading" :align="'center'">
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
@@ -9,32 +9,31 @@
       <v-col><v-skeleton-loader ref="skeleton" :type="'chip'" class="mx-auto"></v-skeleton-loader></v-col>
     </v-row>
 
-    <v-chip
-      v-for="(category, index) of categories" :key="index"
-      class="ma-2"
-      :input-value="selectedCategories.includes(category)"
-      outlined
-      ripple
-      filter
-      @click="toggleCategory(category)"
-    >
-      {{ category }}
-    </v-chip>
+    <div v-else>
+      <v-chip
+        v-for="(category, index) of categories" :key="index"
+        class="ma-2"
+        :input-value="selectedCategories.includes(category)"
+        outlined
+        ripple
+        filter
+        @click="toggleCategory(category)"
+      >
+        {{ category }}
+      </v-chip>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 
 export default {
   name: 'CategoriesList',
+  props: [ 'categories', 'isLoading' ],
   data() {
     return {
       selectedCategories: []
     }
-  },
-  created() {
-    this.$store.dispatch('songs/getCategories')
   },
   methods: {
     toggleCategory(category) {
@@ -43,15 +42,7 @@ export default {
       } else {
         this.selectedCategories.push(category)
       }
-      this.$store.dispatch('songs/getSongs', { category: this.selectedCategories })
-    }
-  },
-  computed: {
-    ...mapState('songs', [
-      'categories'
-    ]),
-    loading() {
-      return !this.categories || this.categories.length <= 0;
+      this.$emit('selected-categories', this.selectedCategories)
     }
   }
 }
