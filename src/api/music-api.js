@@ -14,6 +14,9 @@ export default {
     if (filter && filter.category) {
       filter.category = filter.category.join(',')
     }
+    if (filter && filter.search === '') {
+      return []
+    }
 
     const res = await axios.get(`${BASE_PATH}songs`, { params: filter })
     await delay(1)

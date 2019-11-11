@@ -7,9 +7,8 @@
     append-outer-icon="mdi-magnify"
     prepend-icon="mdi-music-clef-treble"
     :clearable="true"
-    :dense="true"
     :hide-no-data="true"
-    :loading="isLoading"
+    :loading="loadingColor"
     :search-input.sync="search"
     :no-filter="true"
   >
@@ -25,10 +24,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+
+import musicApi from './../api/music-api'
+
 export default {
   name: 'SongSearch',
-  // props: [ 'songs' ],
+  props: {
+    filler: {
+      type: String,
+      default: '...'
+    },
+    hintSize: {
+      type: Number,
+      default: 50
+    },
+    searchLimit: {
+      type: Number,
+      default: 4
+    }
+  },
   data() {
     return {
       songList: [],
@@ -38,41 +52,47 @@ export default {
   },
   methods: {
     lyricsExtract(lyrics) {
-      const FILLER = '...'
-      const SIZE = 50
       if (!lyrics || !this.search) {
         return lyrics;
       }
 
       const cleanLyrics = lyrics.replace(/(\r\n|\n|\r)/gm, '').replace(/\s\s+/g, ' ').toLowerCase()
       const foundIndex = cleanLyrics.indexOf(this.search.toLowerCase())
+
+      let extract;
       if (foundIndex >= 0) {
-        const middle = Math.floor(( SIZE - this.search.length) / 2) - FILLER.length
+        const middle = Math.floor(( this.hintSize - this.search.length) / 2) - this.filler.length
         const lowerLimit = foundIndex - middle
         const upperLimit = foundIndex + this.search.length + middle
         const lyricsFoundSection = lyrics.substring(lowerLimit, upperLimit)
-        return `${FILLER}${lyricsFoundSection}${FILLER}`
+        extract = `${this.filler}${lyricsFoundSection}${this.filler}`
+      } else {
+        extract = `${lyrics.substring(0, (this.hintSize - this.filler.length))}${this.filler}`
       }
-      console.log(`${lyrics.substring(0, (SIZE - FILLER.length))}${FILLER}`)
-      return `${lyrics.substring(0, (SIZE - FILLER.length))}${FILLER}`;
+
+      return extract
+    }
+  },
+  computed: {
+    loadingColor() {
+      return this.isLoading ? 'secondary' : false
     }
   },
   watch: {
-    search (val) {
-      // Items have already been requested
-      if (this.isLoading) return
-
+    async search (val) {
+      if (this.isLoading) {
+        return
+      }
       this.isLoading = true
 
-      // Lazily load input items
-      axios.get('http://localhost:8081/api/v1/songs', { params: { search: val } })
-        .then(res => {
-          this.songList = res.data
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        .finally(() => (this.isLoading = false))
+      try {
+        const response = await musicApi.getSongs({ search: val })
+        this.songList = response.slice(0, this.searchLimit)
+      } catch (err) {
+        console.log(err)
+      }
+
+      this.isLoading = false
     },
   }
 }
