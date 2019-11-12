@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">  
+  <v-app id="app">
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         Capo music
@@ -7,19 +7,42 @@
 
       <v-spacer></v-spacer>
 
-      <SongSearch></SongSearch>
+      <SongSearch
+        @search-terms="findByTerms($event)"
+      ></SongSearch>
       <v-spacer></v-spacer>
-      
+
     </v-app-bar>
     <v-content>
-        <CategoriesList 
-          :categories="categories" 
-          :isLoading="false"
-          v-on:selected-categories="loadCategories($event)"
-        ></CategoriesList>
-        <SongList
-          :songs="songs">
-        </SongList>
+      <v-container fluid>
+        <v-row no-gutters>
+          <v-col>
+
+            <CategoriesList
+              :categories="categories"
+              :isLoading="false"
+              @selected-categories="loadCategories($event)"
+            ></CategoriesList>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <SongList
+              :songs="songs"
+              @song-selected="loadSong($event)">
+            </SongList>
+          </v-col>
+          <v-col>
+            <div v-if="displaySong">
+                Title: {{ displaySong.title }} <br/>
+                Lyrics: <span style="white-space: pre-line" v-html="displaySong.lyrics"></span>
+            </div>
+            <div v-else>
+              Loading...
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -40,7 +63,7 @@ export default {
   created() {
     this.$store.dispatch('songs/getCategories')
     this.$store.dispatch('songs/getSongs')
-    
+
   },
   data() {
     return {
@@ -52,12 +75,23 @@ export default {
   computed: {
     ...mapState('songs', [
       'songs',
-      'categories'
+      'categories',
+      'displaySong'
     ])
   },
   methods: {
     loadCategories(categories) {
       this.$store.dispatch('songs/getSongs', { category: categories })
+    },
+    loadSong(song) {
+      this.$store.dispatch('songs/setSong', song)
+    },
+    findByTerms({ search, slug }) {
+      if (slug) {
+        this.$store.dispatch('songs/getSong', slug)
+      } else {
+        this.$store.dispatch('songs/getSongs', { search })
+      }
     }
   }
 }

@@ -3,7 +3,8 @@ import musicApi from './../../api/music-api'
 const state = {
   songs: [],
   categories: [],
-  currentSong: null
+  displaySong: null,
+  explicitelyChosen: false
 }
 
 // getters
@@ -15,19 +16,41 @@ const actions = {
     const categories = await musicApi.getCategories();
     commit('setCategories', categories)
   },
-  async getSongs({ commit }, filter) {
+  async getSongs({ commit, state }, filter) {
     const songs = await musicApi.getSongs(filter);
     commit('setSongs', songs)
+    if (!state.explicitelyChosen && songs[0]) {
+      commit('setSong', songs[0])
+    }
+  },
+  async getSong({ commit }, slug) {
+    const displaySong = await musicApi.getSong(slug);
+    commit('setSong', displaySong)
+    commit('setExplicit', true)
+
+    const songs = await musicApi.getSongs({ category: displaySong.category });
+    commit('setSongs', songs)
+  },
+  async setSong({ commit, state }, slug) {
+    const localSong = state.songs.find(song => song.slug === slug)
+    commit('setSong', localSong)
+    commit('setExplicit', true)
   }
 }
 
 // mutations
 const mutations = {
-  setCategories (state, categories) {
+  setCategories(state, categories) {
     state.categories = categories
   },
-  setSongs (state, songs) {
+  setSongs(state, songs) {
     state.songs = songs
+  },
+  setSong(state, song) {
+    state.displaySong = song
+  },
+  setExplicit(state, explicit) {
+    state.explicitelyChosen = explicit
   }
 }
 

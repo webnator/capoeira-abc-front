@@ -13,10 +13,9 @@
     :search-input.sync="search"
     :no-filter="true"
 
-    v-model="songSlug"
-    v-on:change="manageEvent3('hey-change')"
-    v-on:keyup.enter="manageEvent3('hey-keyup')"
-    v-on:click:append-outer="manageEvent3('hey-btn')"
+    @change="getSongsBySlug($event)"
+    @keyup.enter="getSongsByKeyword()"
+    @click:append-outer="getSongsByKeyword()"
   >
     <template v-slot:item="data">
       <template>
@@ -53,13 +52,20 @@ export default {
     return {
       songList: [],
       isLoading: false,
-      search: null,
-      songSlug: null
+      search: null
     }
   },
   methods: {
-    manageEvent3 (event) {
-      console.log('change', event, this.search, this.songSlug)
+    getSongsByKeyword () {
+      if (this.isLoading) {
+        return
+      }
+      this.$emit('search-terms', { search: this.search })
+    },
+    getSongsBySlug (event) {
+      this.isLoading = true
+      this.$emit('search-terms', { slug: event })
+      this.isLoading = false
     },
     lyricsExtract (lyrics) {
       if (!lyrics || !this.search) {

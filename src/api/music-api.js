@@ -21,5 +21,10 @@ export default {
     const res = await axios.get(`${BASE_PATH}songs`, { params: filter })
     await delay(1)
     return res.data;
+  },
+  async getSong(slug) {
+    const res = await axios.get(`${BASE_PATH}songs/${slug}`)
+    await delay(1)
+    return res.data;
   }
 }

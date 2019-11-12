@@ -1,9 +1,22 @@
 <template>
   <div class="songs-list">
-
-    <v-card v-for="(song, index) of songs" :key="index" class="mx-auto">
-      <v-card-title>{{song.title}} </v-card-title>
-    </v-card>
+    <v-container>
+      <v-row v-if="!songs || songs.length <= 0">
+        No songs found :(
+      </v-row>
+      <v-row v-for="(song, index) of songs" :key="index" dense>
+        <v-col cols="12">
+          <v-card @click="selectSong(song.slug)">
+            <v-card-title>
+              {{song.title}}
+            </v-card-title>
+            <v-card-subtitle class="italic">
+              {{song.category.join(', ')}}
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -14,19 +27,20 @@ export default {
   props: [ 'songs' ],
   data() {
     return { }
+  },
+  methods: {
+    selectSong(slug) {
+      this.$emit('song-selected', slug)
+    }
   }
 }
 </script>
 <style scoped lang="scss">
-ul {
-  list-style-type: none;
-  padding: 0;
+.songs-list {
+  text-align: left;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.italic {
+  font-size: 90%;
+  font-style: italic;
 }
 </style>
