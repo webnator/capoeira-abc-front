@@ -4,6 +4,7 @@
     :items="songList"
     item-text="title"
     item-value="slug"
+    :append-icon="null"
     append-outer-icon="mdi-magnify"
     prepend-icon="mdi-music-clef-treble"
     :clearable="true"
@@ -11,6 +12,11 @@
     :loading="loadingColor"
     :search-input.sync="search"
     :no-filter="true"
+
+    v-model="songSlug"
+    v-on:change="manageEvent3('hey-change')"
+    v-on:keyup.enter="manageEvent3('hey-keyup')"
+    v-on:click:append-outer="manageEvent3('hey-btn')"
   >
     <template v-slot:item="data">
       <template>
@@ -47,11 +53,15 @@ export default {
     return {
       songList: [],
       isLoading: false,
-      search: null
+      search: null,
+      songSlug: null
     }
   },
   methods: {
-    lyricsExtract(lyrics) {
+    manageEvent3 (event) {
+      console.log('change', event, this.search, this.songSlug)
+    },
+    lyricsExtract (lyrics) {
       if (!lyrics || !this.search) {
         return lyrics;
       }
