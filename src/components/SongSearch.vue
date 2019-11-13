@@ -1,33 +1,40 @@
 <template>
-  <v-autocomplete
-    placeholder="Search"
-    :items="songList"
-    item-text="title"
-    item-value="slug"
-    :append-icon="null"
-    append-outer-icon="mdi-magnify"
-    prepend-icon="mdi-music-clef-treble"
-    :clearable="true"
-    :hide-no-data="true"
-    :loading="loadingColor"
-    :search-input.sync="search"
-    :no-filter="true"
+  <span id="song-search">
+    <v-autocomplete
+      color="secondary"
+      label="Search"
+      :append-icon="null"
+      append-outer-icon="mdi-magnify"
+      prepend-icon="mdi-music-clef-treble"
+      filled="true"
+      dense="true"
+      
+      attach="#song-search-results"
 
-    @change="getSongsBySlug($event)"
-    @keyup.enter="getSongsByKeyword()"
-    @click:append-outer="getSongsByKeyword()"
-  >
-    <template v-slot:item="data">
-      <template>
+      :items="songList"
+      item-text="title"
+      item-value="slug"
+      :clearable="true"
+      :hide-no-data="true"
+      
+      :loading="isLoading"
+      :search-input.sync="search"
+      :no-filter="true"
+
+      @change="getSongsBySlug($event)"
+      @keyup.enter="getSongsByKeyword()"
+      @click:append-outer="getSongsByKeyword()"
+    >
+      <template v-slot:item="data">
         <v-list-item-content>
           <v-list-item-title v-html="data.item.title"></v-list-item-title>
           <v-list-item-subtitle v-html="lyricsExtract(data.item.lyrics)"></v-list-item-subtitle>
         </v-list-item-content>
       </template>
-    </template>
-  </v-autocomplete>
+    </v-autocomplete>
+    <div id="song-search-results"></div>
+  </span>
 </template>
-
 <script>
 
 import musicApi from './../api/music-api'
@@ -113,16 +120,37 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
-ul {
-  list-style-type: none;
-  padding: 0;
+<style lang="scss">
+
+#song-search {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  padding: 25px 0 0 0 ;
+
+  .v-text-field--filled > .v-input__control > .v-input__slot {
+    border-radius: 0;
+  }
+
+  #song-search-results {
+    position: absolute;
+
+    .theme--light.v-list-item {
+      border-bottom: 2px solid var(--v-secondary-base);
+      &:last-child {
+        border-bottom: 0px;
+      }
+    }
+
+    .theme--light.v-list {
+      background-color: var(--v-accent-lighten3);
+      opacity: 0.95;
+    }
+    .theme--light.v-select-list.v-card {
+      background-color: transparent;
+    }
+  }
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
+
 </style>

@@ -1,4 +1,4 @@
-<template>
+<template class="amber">
   <router-view/>
 </template>
 

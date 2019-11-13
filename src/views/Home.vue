@@ -1,15 +1,22 @@
 <template>
   <v-app id="app">
-    <v-app-bar app color="primary" elevation="0" dark>
-      <div class="d-flex align-center">
+    <v-app-bar 
+      app 
+      color="primary" 
+      flat
+      tile
+      dark
+    >
+      <v-toolbar-title>
         Capo music
-      </div>
-
+      </v-toolbar-title>
+      
       <v-spacer></v-spacer>
 
       <SongSearch
         @search-terms="findByTerms($event)"
       ></SongSearch>
+      
       <v-spacer></v-spacer>
 
     </v-app-bar>
@@ -103,18 +110,23 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background: var(--v-primary-base);
 }
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.v-chip.v-size--default {
+  background: var(--v-secondary-base);
+  color: var(--v-accent-base);
 }
+
+.theme--light.v-chip:not(.v-chip--active) {
+  border-color: var(--v-secondary-base);
+  border: 1px solid;
+  background: transparent;
+  color: var(--v-secondary-base);
+}
+
+.v-chip__filter.v-icon {
+  color: var(--v-accent-base);
+}
+
 </style>

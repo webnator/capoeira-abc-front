@@ -14,9 +14,9 @@
         v-for="(category, index) of categories" :key="index"
         class="ma-2"
         :input-value="selectedCategories.includes(category)"
-        outlined
         ripple
         filter
+        label
         @click="toggleCategory(category)"
       >
         {{ category }}
@@ -48,15 +48,5 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
