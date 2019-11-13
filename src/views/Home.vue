@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary" elevation="0" dark>
       <div class="d-flex align-center">
         Capo music
       </div>
