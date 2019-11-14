@@ -6,7 +6,10 @@
       </v-row>
       <v-row v-for="(song, index) of songs" :key="index" dense>
         <v-col cols="12">
-          <v-card @click="selectSong(song.slug)">
+          <v-card
+            @click="selectSong(song.slug)"
+            tile
+          >
             <v-card-title>
               {{song.title}}
             </v-card-title>
@@ -43,4 +46,18 @@ export default {
   font-size: 90%;
   font-style: italic;
 }
+
+.v-card.v-card--link.v-sheet.theme--light {
+  border-bottom: 3px solid var(--v-secondary-lighten3);
+  border-right: 3px solid var(--v-secondary-lighten3);
+  cursor: pointer;
+
+  .v-card__title {
+    padding: 5px 0px 5px 16px;
+  }
+  .v-card__subtitle {
+    padding: 5px 0px 5px 16px;
+  }
+}
+
 </style>

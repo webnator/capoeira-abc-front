@@ -3,12 +3,11 @@
     <v-autocomplete
       color="secondary"
       label="Search"
-      :append-icon="null"
-      append-outer-icon="mdi-magnify"
-      prepend-icon="mdi-music-clef-treble"
-      filled="true"
-      dense="true"
-      
+      append-icon="mdi-magnify"
+      prepend-inner-icon="mdi-music-clef-treble"
+      :filled="true"
+      :dense="true"
+
       attach="#song-search-results"
 
       :items="songList"
@@ -16,7 +15,7 @@
       item-value="slug"
       :clearable="true"
       :hide-no-data="true"
-      
+
       :loading="isLoading"
       :search-input.sync="search"
       :no-filter="true"
@@ -126,10 +125,40 @@ export default {
   align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
-  padding: 25px 0 0 0 ;
+  padding: 35px 0 0 0;
+  color: var(--v-secondary-base);
 
   .v-text-field--filled > .v-input__control > .v-input__slot {
     border-radius: 0;
+    background-color: var(--v-accent-base);
+    color: var(--v-secondary-base);
+    border: 4px solid var(--v-secondary-base) !important;
+  }
+  .v-icon.theme--dark, .v-label.v-label--active.theme--dark, .v-label.theme--dark {
+    color: var(--v-secondary-base);
+  }
+
+  .v-select__slot {
+    input {
+      color: var(--v-secondary-base);
+    }
+  }
+
+  .v-input__append-inner:last-of-type {
+    background:var(--v-secondary-base);
+    cursor: pointer;
+    height: 102%;
+    margin-top: 0px;
+    margin-right: -12px;
+    width: 50px;
+
+    .v-input__icon.v-input__icon--append {
+      align-self: center;
+      .v-icon.theme--dark {
+        transform: rotate(0deg);
+        color: var(--v-accent-base) !important;
+      }
+    }
   }
 
   #song-search-results {
@@ -143,7 +172,7 @@ export default {
     }
 
     .theme--light.v-list {
-      background-color: var(--v-accent-lighten3);
+      background-color: var(--v-accent-base);
       opacity: 0.95;
     }
     .theme--light.v-select-list.v-card {

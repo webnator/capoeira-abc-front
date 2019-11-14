@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
-    <v-app-bar 
-      app 
-      color="primary" 
+    <v-app-bar
+      app
+      color="primary"
       flat
       tile
       dark
@@ -10,18 +10,26 @@
       <v-toolbar-title>
         Capo music
       </v-toolbar-title>
-      
+
       <v-spacer></v-spacer>
 
       <SongSearch
         @search-terms="findByTerms($event)"
       ></SongSearch>
-      
+
       <v-spacer></v-spacer>
 
     </v-app-bar>
     <v-content>
       <v-container fluid>
+        <v-row>
+          <div class="divider">
+            <span class="horizontal"></span>
+            <span class="horizontal"></span>
+            <span class="vertical"></span>
+            <span class="vertical"></span>
+          </div>
+        </v-row>
         <v-row no-gutters>
           <v-col>
 
@@ -105,6 +113,27 @@ export default {
 </script>
 
 <style lang="scss">
+.divider {
+
+  width: 100%;
+  margin: 20px 0;
+  span {
+    display: block;
+  }
+  .horizontal {
+    background-color: var(--v-secondary-base);
+    width: 100%;
+    height: 6px;
+    margin-top: 2px;
+  }
+  .vertical {
+    background-color:black;
+    width: 6px;
+    height: 50%;
+    position: absolute;
+    right: 10px;
+  }
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
