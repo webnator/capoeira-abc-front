@@ -10,6 +10,23 @@
     </v-row>
 
     <div v-else>
+      <!-- <v-slide-group multiple show-arrows>
+        <v-slide-item
+          v-for="(category, index) of categories" :key="index"
+          v-slot:default="{ active, toggle }"
+        >
+          <v-btn
+            class="mx-2"
+            :input-value="selectedCategories.includes(category)"
+            ripple
+            filter
+            label
+            @click="toggleCategory(category)"
+          >
+            {{ category }}
+          </v-btn>
+        </v-slide-item>
+      </v-slide-group> -->
       <v-chip
         v-for="(category, index) of categories" :key="index"
         class="ma-2"

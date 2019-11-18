@@ -7,9 +7,13 @@
       tile
       dark
     >
-      <v-toolbar-title>
-        Capo music
-      </v-toolbar-title>
+      <v-avatar class="logo-container elevation-6 py-2">
+        <v-img 
+          src="../assets/logo-blanco.png"
+          class=""
+          contain>
+        </v-img>
+      </v-avatar>
 
       <v-spacer></v-spacer>
 
@@ -44,17 +48,12 @@
           <v-col cols="4">
             <SongList
               :songs="songs"
+              :selected-song="displaySong"
               @song-selected="loadSong($event)">
             </SongList>
           </v-col>
           <v-col>
-            <div v-if="displaySong">
-                Title: {{ displaySong.title }} <br/>
-                Lyrics: <span style="white-space: pre-line" v-html="displaySong.lyrics"></span>
-            </div>
-            <div v-else>
-              Loading...
-            </div>
+            <display-song :song="displaySong" />
           </v-col>
         </v-row>
       </v-container>
@@ -66,6 +65,7 @@
 import CategoriesList from '@/components/CategoriesList'
 import SongList from '@/components/SongList'
 import SongSearch from '@/components/SongSearch'
+import DisplaySong from '@/components/DisplaySong'
 import { mapState } from 'vuex'
 
 export default {
@@ -73,7 +73,8 @@ export default {
   components: {
     CategoriesList,
     SongList,
-    SongSearch
+    SongSearch,
+    DisplaySong
   },
   created() {
     this.$store.dispatch('songs/getCategories')
@@ -113,8 +114,18 @@ export default {
 </script>
 
 <style lang="scss">
-.divider {
+.logo-container {
+  background-color: var(--v-secondary-base);
+  height: 84px !important;
+  min-width: 48px;
+  width: 12% !important;
+  max-width: 150px !important;
+  margin-top: 20px;
+  margin-left: 2%;
+  border-radius: 0px 0px 10px 10px;
+}
 
+.divider {
   width: 100%;
   margin: 20px 0;
   span {

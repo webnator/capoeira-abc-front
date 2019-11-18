@@ -11,7 +11,11 @@
             tile
           >
             <v-card-title>
-              {{song.title}}
+              <div 
+                v-bind:class="{ selected: song.slug === selectedSong.slug }"
+              >
+                <div>{{song.title}}</div>
+              </div>
             </v-card-title>
             <v-card-subtitle class="italic">
               {{song.category.join(', ')}}
@@ -27,7 +31,13 @@
 
 export default {
   name: 'SongsList',
-  props: [ 'songs' ],
+  props: { 
+    songs: Array,
+    selectedSong: {
+      type: Object,
+      default: () => ({}) 
+    }
+  },
   data() {
     return { }
   },
@@ -54,6 +64,35 @@ export default {
 
   .v-card__title {
     padding: 5px 0px 5px 16px;
+
+    
+
+    div.selected {
+      display: inline-grid;
+      
+      &::before {
+        content: "";
+        width: calc(100% + 10px);
+        background-color: var(--v-primary-base);
+        display: block;
+        height: 5px;
+        margin-left: -5px;
+        position: relative;
+        top: 23px;
+        z-index: 0;
+
+         animation-name: slide;
+        animation-duration: 0.5s;
+      }
+
+      @keyframes slide {
+        0% { width: 0%; }
+        100% { width: calc(100% + 10px); }
+      }
+      div {
+        z-index: 1;  
+      }
+    }
   }
   .v-card__subtitle {
     padding: 5px 0px 5px 16px;
