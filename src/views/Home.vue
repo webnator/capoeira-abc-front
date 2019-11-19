@@ -8,7 +8,7 @@
       dark
     >
       <v-avatar class="logo-container elevation-6 py-2">
-        <v-img 
+        <v-img
           src="../assets/logo-blanco.png"
           class=""
           contain>
@@ -58,6 +58,8 @@
         </v-row>
       </v-container>
     </v-content>
+    <Footer></Footer>
+    <Player></Player>
   </v-app>
 </template>
 
@@ -66,6 +68,8 @@ import CategoriesList from '@/components/CategoriesList'
 import SongList from '@/components/SongList'
 import SongSearch from '@/components/SongSearch'
 import DisplaySong from '@/components/DisplaySong'
+import Footer from '@/components/Footer'
+import Player from '@/components/Player'
 import { mapState } from 'vuex'
 
 export default {
@@ -74,7 +78,9 @@ export default {
     CategoriesList,
     SongList,
     SongSearch,
-    DisplaySong
+    DisplaySong,
+    Footer,
+    Player
   },
   created() {
     this.$store.dispatch('songs/getCategories')
@@ -151,6 +157,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: var(--v-primary-base);
+
+  .v-content {
+    .container {
+      padding-bottom: 50px;
+    }
+  }
 }
 
 .v-chip.v-size--default {
