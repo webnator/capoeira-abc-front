@@ -28,10 +28,19 @@
       <v-container fluid>
         <v-row>
           <div class="divider">
-            <span class="horizontal"></span>
-            <span class="horizontal"></span>
-            <span class="vertical"></span>
-            <span class="vertical"></span>
+            <span class="horizontal">
+              <span></span>
+              <span></span>
+            </span>
+            <span class="vertical">
+              <span class="vertical-child"></span>
+              <span class="vertical-child"></span>
+              <span class="horizontal">
+                <span></span>
+                <span></span>
+              </span>
+            </span>
+            
           </div>
         </v-row>
         <v-row no-gutters>
@@ -59,7 +68,7 @@
       </v-container>
     </v-content>
     <Footer></Footer>
-    <Player></Player>
+    <Player style="display: none;"></Player>
   </v-app>
 </template>
 
@@ -138,17 +147,57 @@ export default {
     display: block;
   }
   .horizontal {
-    background-color: var(--v-secondary-base);
-    width: 100%;
-    height: 6px;
-    margin-top: 2px;
+    span {
+      background-image: url('../assets/corda.png');
+      width: 100%;
+      height: 6px;
+      margin-top: 2px;
+      background-repeat: repeat-x;
+      background-size: 100px 6px;
+      &:first-of-type {
+        background-position: 13px;
+      }
+    }
   }
   .vertical {
-    background-color:black;
-    width: 6px;
-    height: 50%;
     position: absolute;
-    right: 10px;
+    right: 15px;
+    height: 40vh;
+    background-color: var(--v-primary-base);
+    margin-top: -18px;
+    span.vertical-child {
+      background-image: url('../assets/corda.png');
+      background-repeat: repeat-y;
+      background-size: 14px 16px;
+      width: 6px;
+      height: inherit;
+      right: 10px;
+      margin-right: 3px;
+      display: inline-block;
+      margin-left: 1.5px;
+      margin-right: 1.5px;
+      &::after {
+        content: "";
+        background-image: url('../assets/corda-final.png');
+        height: 40px;
+        width: 17px;
+        display: block;
+        position: absolute;
+        bottom: -38px;
+        background-size: 57%;
+        background-repeat: no-repeat;
+        margin-left: -2px;
+      }
+
+    }
+    .horizontal {
+      position: absolute;
+      top: 14px;
+      width: 23px;
+      margin-left: -3px;
+      background-color: var(--v-primary-base);
+    }
+    
   }
 }
 #app {
