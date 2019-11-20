@@ -1,9 +1,19 @@
 <template>
   <div id="display-song">
     <div v-if="song">
-      <div class="title font-weight-black">
-        <span>{{ song.title.toUpperCase() }}</span>
-      </div>
+      <v-row no-gutters>
+        <v-col>
+          <div class="title font-weight-black">
+            <span>{{ song.title.toUpperCase() }}</span>
+          </div>
+        </v-col>
+        <v-col>
+          <v-btn v-if="hasMedia" class="mx-2" tile small @click="addToPlaylist">
+            <v-icon dark>mdi-playlist-music</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+      
       <div class="divider"></div>
       <div class="lyrics">
         <span style="white-space: pre-line" v-html="song.lyrics"></span>
@@ -26,6 +36,14 @@ export default {
     }
   },
   methods: {
+    addToPlaylist() {
+      this.$emit('playlist-added', this.song)
+    }
+  },
+  computed: {
+    hasMedia() {
+      return this.song.media && this.song.media.videoLink && this.song.media.videoLink !== ''
+    }
   }
 }
 </script>

@@ -62,13 +62,15 @@
             </SongList>
           </v-col>
           <v-col>
-            <display-song :song="displaySong" />
+            <display-song 
+              :song="displaySong"
+              @playlist-added="addToPlaylist"/>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
     <Footer></Footer>
-    <Player style="display: none;"></Player>
+    <Player></Player>
   </v-app>
 </template>
 
@@ -123,6 +125,9 @@ export default {
       } else {
         this.$store.dispatch('songs/getSongs', { search })
       }
+    },
+    addToPlaylist(song) {
+      this.$store.dispatch('playlist/add', song)
     }
   }
 }
@@ -162,7 +167,7 @@ export default {
   .vertical {
     position: absolute;
     right: 15px;
-    height: 40vh;
+    height: 50vh;
     background-color: var(--v-primary-base);
     margin-top: -18px;
     span.vertical-child {
