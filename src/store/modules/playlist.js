@@ -6,7 +6,6 @@ const state = {
 // getters
 const getters = {
   songList(state) {
-    console.log(state.songs)
     return Array.from(state.songs)
   }
 }
@@ -15,6 +14,9 @@ const getters = {
 const actions = {
   add({ commit }, song) {
     commit('addSong', song)
+  },
+  remove({ commit }, song) {
+    commit('removeSong', song)
   }
 }
 
@@ -22,6 +24,10 @@ const actions = {
 const mutations = {
   addSong(state, song) {
     state.songs.add(song)
+    state.songs = new Set(state.songs)
+  },
+  removeSong(state, song) {
+    state.songs.delete(song)
     state.songs = new Set(state.songs)
   }
 }
