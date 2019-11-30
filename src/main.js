@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import VueYoutube from 'vue-youtube'
+import i18n from './i18n'
 
 Vue.use(VueYoutube)
 
@@ -14,5 +15,6 @@ new Vue({
   router,
   store,
   vuetify,
+  i18n,
   render: function (h) { return h(App) }
 }).$mount('#app')

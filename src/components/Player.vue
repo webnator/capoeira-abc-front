@@ -1,8 +1,6 @@
 <template>
   <div id="player" v-if="songs.length">
     <div class="playlist" :class="{ hidden: !visible }">
-
-
       <v-list dense>
         <v-list-item-group>
           <v-list-item v-for="(song, index) of songs" :key="index" @click="selectSong(index)">
@@ -14,7 +12,7 @@
               <v-list-item-title v-text="song.title"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn icon x-small>
+              <v-btn icon x-small :href="song.media.videoLink" target="_blank">
                 <v-icon dark>mdi-youtube-tv</v-icon>
               </v-btn>
               <v-btn icon x-small @click="removeSong(index)">
@@ -213,22 +211,50 @@ export default {
   background-color: var(--v-accent-base);
   width: 400px;
   z-index: 100;
-
+  padding: 0px 10px;
+  
   .playlist {
     max-height: 150px;
     height: auto;
     overflow: scroll;
     text-align: left;
-    padding: 10px;
+    border-top: 10px solid var(--v-accent-base);
 
     &.hidden {
       height: 0px;
       overflow: hidden;
       padding: 0px;
+      border: 0px;
     }
+
+    .v-list-item {
+      .v-list-item__icon {
+        .v-icon {
+          border-radius: 50%;
+          color: var(--v-primary-base);
+          background-color: var(--v-secondary-base); 
+        }
+      }
+      .v-list-item__action {
+        flex-direction: row;
+        .v-btn {
+          margin-left: 8px;
+        }
+      }
+      .v-list-item__content {
+        padding-left: 7px;
+      }
+    }
+    
   }
 
   .player {
+    .controls {
+      color: var(--v-secondary-base);
+      .play {
+        color: var(--v-primary-darken1);
+      }
+    }
     .col-8 {
       text-align: left;
     }

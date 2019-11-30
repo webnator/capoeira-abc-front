@@ -66,4 +66,20 @@ export default {
 </script>
 <style scoped lang="scss">
 
+.v-chip.v-size--default {
+  background: var(--v-secondary-base);
+  color: var(--v-accent-base);
+}
+
+.theme--light.v-chip:not(.v-chip--active) {
+  border-color: var(--v-secondary-base);
+  border: 1px solid;
+  background: transparent;
+  color: var(--v-secondary-base);
+}
+
+.v-chip__filter.v-icon {
+  color: var(--v-accent-base);
+}
+
 </style>

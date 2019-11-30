@@ -11,7 +11,7 @@
 
       <v-spacer></v-spacer>
 
-      <SongSearch
+      <SongSearch v-show="false"
         @search-terms="findByTerms($event)"
       ></SongSearch>
 
@@ -39,26 +39,12 @@
         </v-row>
         <v-row no-gutters>
           <v-col>
-
-            <CategoriesList
-              :categories="categories"
-              :isLoading="false"
-              @selected-categories="loadCategories($event)"
-            ></CategoriesList>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="4">
-            <SongList
-              :songs="songs"
-              :selected-song="displaySong"
-              @song-selected="loadSong($event)">
-            </SongList>
-          </v-col>
-          <v-col>
-            <display-song 
-              :song="displaySong"
-              @playlist-added="addToPlaylist"/>
+            <div>
+              <div class="title font-weight-black">
+                <span>About this!</span>
+              </div>
+            </div>
+            Let me tell you a story 
           </v-col>
         </v-row>
       </v-container>
@@ -68,58 +54,17 @@
 </template>
 
 <script>
-import CategoriesList from '@/components/CategoriesList'
-import SongList from '@/components/SongList'
 import SongSearch from '@/components/SongSearch'
-import DisplaySong from '@/components/DisplaySong'
 import SideMenu from '@/components/SideMenu'
-import { mapState } from 'vuex'
 
 export default {
-  name: 'home',
+  name: 'about',
   components: {
-    CategoriesList,
-    SongList,
     SongSearch,
-    DisplaySong,
     SideMenu
   },
-  created() {
-    this.$store.dispatch('songs/getCategories')
-    this.$store.dispatch('songs/getSongs')
-
-  },
   data() {
-    return {
-      songList: [],
-      isLoading: false,
-      search: null
-    }
-  },
-  computed: {
-    ...mapState('songs', [
-      'songs',
-      'categories',
-      'displaySong'
-    ])
-  },
-  methods: {
-    loadCategories(categories) {
-      this.$store.dispatch('songs/getSongs', { category: categories })
-    },
-    loadSong(song) {
-      this.$store.dispatch('songs/setSong', song)
-    },
-    findByTerms({ search, slug }) {
-      if (slug) {
-        this.$store.dispatch('songs/getSong', slug)
-      } else {
-        this.$store.dispatch('songs/getSongs', { search })
-      }
-    },
-    addToPlaylist(song) {
-      this.$store.dispatch('playlist/add', song)
-    }
+    return { }
   }
 }
 </script>

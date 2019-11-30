@@ -1,15 +1,13 @@
 <template>
   <div id="display-song">
     <div v-if="song">
-      <v-row no-gutters>
+      <v-row class="header" no-gutters>
         <v-col>
           <div class="title font-weight-black">
-            <span>{{ song.title.toUpperCase() }}</span>
+            <span>{{ song.title }}</span>
           </div>
-        </v-col>
-        <v-col>
-          <v-btn v-if="hasMedia" class="mx-2" tile small @click="addToPlaylist">
-            <v-icon dark>mdi-playlist-music</v-icon>
+          <v-btn v-if="hasMedia" icon large @click="addToPlaylist">
+            <v-icon dark>mdi-music-note-plus</v-icon>
           </v-btn>
         </v-col>
       </v-row>
@@ -62,24 +60,16 @@ export default {
 
   .lyrics {
     text-align: center;
+    span::selection {
+      background-color: var(--v-accent-base);
+    }
   }
 
-  .title {
-    display: inline-grid;
-    
-    &::before {
-      content: "";
-      width: calc(100% + 20px);
-      background-color: var(--v-accent-base);
-      display: block;
-      height: 15px;
-      margin-left: -10px;
-      position: relative;
-      top: 26px;
-      z-index: 0;
-    }
-    span {
-      z-index: 1;  
+  .header {
+    .v-btn {
+      vertical-align: bottom;
+      margin-left: 15px;
+      color:var(--v-accent-secondary);
     }
   }
 }
