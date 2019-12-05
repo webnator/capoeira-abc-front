@@ -2,7 +2,7 @@
 import axios from 'axios'
 import delay from 'delay'
 
-const BASE_PATH = 'http://localhost:8081/api/v1/'
+const BASE_PATH = 'https://capoeira-music.herokuapp.com/api/v1/'
 
 export default {
   async getCategories() {
