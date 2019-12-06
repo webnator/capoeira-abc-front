@@ -1,3 +1,7 @@
 {
-  "message": "hola i18n !!"
+  "search": "Buscar",
+  "home": "Inicio",
+  "about": "Acerca de",
+  "contact": "Contacto",
+  "added_playlist": "Añadido a la lista"
 }

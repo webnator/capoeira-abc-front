@@ -110,6 +110,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('playlist/init')
     this.playingIndex = 0
   },
   methods: {

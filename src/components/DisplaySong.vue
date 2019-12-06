@@ -20,6 +20,16 @@
     <div v-else>
       Loading...
     </div>
+    <v-snackbar
+      v-model="added"
+      :bottom="true"
+      :timeout="2000"
+    >
+      <span v-t="'added_playlist'"/>
+      <v-btn text dark @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -30,12 +40,13 @@ export default {
   props: [ 'song' ],
   data() {
     return {
-      
+      added: false
     }
   },
   methods: {
     addToPlaylist() {
       this.$emit('playlist-added', this.song)
+      this.added = true
     }
   },
   computed: {

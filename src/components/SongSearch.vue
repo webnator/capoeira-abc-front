@@ -2,7 +2,7 @@
   <span id="song-search">
     <v-autocomplete
       color="secondary"
-      :label="$t('message')"
+      :label="$t('search')"
       append-icon="mdi-magnify"
       prepend-inner-icon="mdi-music-clef-treble"
       :filled="true"

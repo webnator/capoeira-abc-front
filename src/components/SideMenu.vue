@@ -3,15 +3,9 @@
     <div class="btn-container">
       <v-list>
         <v-list-item-group>
-          <v-list-item @click="navigate('home')">
-            Home
-          </v-list-item>
-          <v-list-item @click="navigate('about')">
-            About
-          </v-list-item>
-          <v-list-item @click="navigate('contact')">
-            Contact
-          </v-list-item>
+          <v-list-item @click="navigate('home')" v-t="'home'"></v-list-item>
+          <v-list-item @click="navigate('about')" v-t="'about'"></v-list-item>
+          <v-list-item @click="navigate('contact')" v-t="'contact'"></v-list-item>
         </v-list-item-group>
         <v-divider></v-divider>
         <v-list-item-group>
@@ -33,6 +27,8 @@
 </template>
 
 <script>
+
+import { setLocale } from './../services/i18n'
 
 export default {
   name: 'SideMenu',
@@ -58,7 +54,7 @@ export default {
       this.shown = false
     },
     chooseLang(lang) {
-      this.$i18n.locale = lang;
+      setLocale(lang)
     }
   }
 }
@@ -98,8 +94,8 @@ export default {
   }
   .v-item-group {
     button {
-      margin-top: 10px;
-      margin-right: 10px;
+      margin-top: 5px;
+      margin-right: 5px;
       background-color: transparent;
 
       &.active {

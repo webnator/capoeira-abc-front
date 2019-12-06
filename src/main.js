@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import VueYoutube from 'vue-youtube'
-import i18n from './i18n'
+import i18n from './services/i18n'
 
 Vue.use(VueYoutube)
 

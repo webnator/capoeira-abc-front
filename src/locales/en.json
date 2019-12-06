@@ -1,3 +1,7 @@
 {
-  "message": "hello i18n !!"
+  "search": "Search",
+  "home": "Home",
+  "about": "About",
+  "contact": "Contact",
+  "added_playlist": "Added to playlist"
 }

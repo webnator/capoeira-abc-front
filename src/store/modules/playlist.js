@@ -1,3 +1,4 @@
+import { setCookie, getCookie } from './../../services/cookies'
 
 const state = {
   songs: new Set()
@@ -14,9 +15,15 @@ const getters = {
 const actions = {
   add({ commit }, song) {
     commit('addSong', song)
+    setCookie('cm-playlist', JSON.stringify(getters.songList(state)))
   },
   remove({ commit }, song) {
     commit('removeSong', song)
+    setCookie('cm-playlist', JSON.stringify(getters.songList(state)))
+  },
+  init({ commit }) {
+    const cookiePlaylist = getCookie('cm-playlist')
+    commit('setPlaylist', JSON.parse(cookiePlaylist) || [])
   }
 }
 
@@ -29,6 +36,9 @@ const mutations = {
   removeSong(state, song) {
     state.songs.delete(song)
     state.songs = new Set(state.songs)
+  },
+  setPlaylist(state, songList) {
+    state.songs = new Set(songList)
   }
 }
 
