@@ -37,14 +37,47 @@
             
           </div>
         </v-row>
-        <v-row no-gutters>
-          <v-col>
+        <v-row 
+          class="mb-6"
+          justify="center"
+          no-gutters>
+          <v-col lg="6">
             <div>
               <div class="title font-weight-black">
-                <span>About this!</span>
+                <span v-t="'about'"></span>
               </div>
             </div>
-            Let me tell you a story 
+
+            <div class="content">
+              <span v-html="$t('about_page.paragraphs[0]')"/>
+              <br/><br/>
+              <span v-html="$t('about_page.paragraphs[1]')"/>
+              <br/><br/>
+              <span v-html="$t('about_page.paragraphs[2]')"/>
+              <br/><br/>
+              <span v-html="$t('about_page.paragraphs[3]')"/>
+              <br/><br/>
+              <span v-html="$t('about_page.paragraphs[4]')"/>
+              <br/><br/>
+              <span v-html="$t('about_page.paragraphs[5]')"/>
+              <br/><br/>
+              <ul>
+                <li>{{ $t('about_page.help_list[0]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+                <li>{{ $t('about_page.help_list[1]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+                <li>{{ $t('about_page.help_list[2]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+                <li>{{ $t('about_page.help_list[3]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+                <li>{{ $t('about_page.help_list[4]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+                <li>{{ $t('about_page.help_list[5]') }} <router-link to="/contact" v-t="'about_page.contact_call'"/></li>
+              </ul>
+
+              <br/><br/>
+              <hr>
+              <span v-html="$t('about_page.tech_info')"/>
+              <hr>
+              <br/><br/>
+
+              <span v-html="$t('about_page.final_message')"/>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -79,6 +112,19 @@ export default {
   margin-top: 20px;
   margin-left: 2%;
   border-radius: 0px 0px 10px 10px;
+}
+
+.content {
+  text-align: left;
+
+  a {
+    color: var(--v-accent-base) !important;
+    font-weight: bold;
+    &:hover {
+      color: var(--v-secondary-base) !important;
+      background-color: var(--v-accent-base);
+    }
+  }
 }
 
 .divider {

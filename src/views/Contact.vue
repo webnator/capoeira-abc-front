@@ -41,10 +41,12 @@
           <v-col>
             <div>
               <div class="title font-weight-black">
-                <span>Contact me!</span>
+                <span v-t="'contact'"></span>
               </div>
             </div>
-            Let's contact!
+            Si quieres colaborar con este proyecto
+            Si tienes alguna queja o sugerencia
+            Si tienes alguna duda
           </v-col>
         </v-row>
       </v-container>

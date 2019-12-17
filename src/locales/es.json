@@ -3,5 +3,26 @@
   "home": "Inicio",
   "about": "Acerca de",
   "contact": "Contacto",
-  "added_playlist": "Añadido a la lista"
+  "added_playlist": "Añadido a la lista",
+  "about_page": {
+    "paragraphs": [
+      "Bienvenidos a este rincón donde encontrar y compartir letras y música de Capoeira.",
+      "Este es un proyecto personal sin fines de lucro, y que nació al querer aprender nuevas tecnologías web que tenía ya en la mente desde hacía un tiempo (<a href=\"https://vuejs.org/v2/guide/\" target=\"_blank\">VueJS</a> y <a href=\"https://tour.golang.org/welcome/1\" target=\"_blank\">Golang</a>). Está hosteado de forma gratuita, por eso a veces tarda un poco en cargar, lo siento :(",
+      "Siempre me gusta que las cosas que hago tengan una finalidad y un uso práctico, por eso en vez de hacer el típico tutorial de una lista de compra, pues quise hacer algo que me interesase más y me resultara más atractivo, y de eso, pues nació esto.",
+      "Tengo ya algunos años practicando Capoeira, y es un arte que me apasiona mucho, la unión entre artes marciales, acrobacias, cultura, historia, y sobre todo MÚSICA, es lo que me atrapó desde el comienzo y me sigue manteniendo allí.",
+      "Por esta razón decidí darle este rumbo a este pequeño proyecto, y ofrecer un lugar donde encontrar de manera fácil, con letras y música, una recopilación de canciones utilizadas en las rodas de capoeira, y que cuando estamos iniciando nos cuesta tanto entender y seguir.",
+      "Como comencé diciendo, este es un proyecto personal sin fines de lucro, que mantengo en mis tiempos libres, así que toda ayuda es bienvenida:"
+    ],
+    "help_list": [
+      "Algo no funciona bien,",
+      "Falta alguna canción,",
+      "Alguna canción tiene un error,",
+      "Quieres ayudar,",
+      "Quieres traducir la página a tu idioma,",
+      "Tienes dudas de VueJS o Golang, yo también!, pero"
+    ],
+    "contact_call": "escríbeme",
+    "tech_info": "Para los más técnicos, este proyecto ha sido desarrollado utilizando Golang para el backend con el framework Gin, en el frontend experimentando un poco con VueJS, y una base de datos mongo. Es mi primer acercamiento poniendo estas tecnologías en \"producción\" así que cualquier sugerencia, consejo o queja es más que bien recibido.<br/><br/>Este proyecto se encuentra hosteado de forma gratuita en Heroku y Github pages, y el código fuente completo está disponible en mi Github -> <a href=\"http://github.com/webnator\" target=\"_blank\">http://github.com/webnator</a>",
+    "final_message": "Espero disfruten!"
+  }
 }
