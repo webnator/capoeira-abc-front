@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vue-front/precache-manifest.685410eee24b9068bcae2e52312822a9.js"
+  "/vue-front/precache-manifest.d66d8e3dd0f2cdd7510c6b37d7006569.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "capo-app-js"});
