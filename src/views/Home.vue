@@ -110,8 +110,7 @@ export default {
       this.$store.dispatch('songs/getSongs', { category: categories })
     },
     loadSong(slug) {
-      this.$router.push({ name: 'home', params: { slug } })
-      // this.$store.dispatch('songs/setSong', slug)
+      this.$store.dispatch('songs/setSong', slug)
     },
     findByTerms({ search, slug }) {
       if (slug) {
@@ -125,8 +124,10 @@ export default {
     }
   },
   watch: {
-    $route(to) {
-      this.$store.dispatch('songs/getSong', to.params.slug)
+    displaySong({ slug } = {}) {
+      if (slug) {
+        this.$router.push({ name: 'home', params: { slug } })
+      }
     }
   }
 }
