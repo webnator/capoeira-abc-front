@@ -2,7 +2,7 @@ module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
-  publicPath: "/vue-front",
+  publicPath: "/capoeira-abc-front",
   outputDir: "docs",
 
   pluginOptions: {

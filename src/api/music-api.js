@@ -26,5 +26,8 @@ export default {
     const res = await axios.get(`${BASE_PATH}songs/${slug}`)
     await delay(1)
     return res.data;
+  },
+  async songViewed(slug) {
+    await axios.patch(`${BASE_PATH}song-views/${slug}`, { viewed: 1})
   }
 }

@@ -34,7 +34,7 @@
                 <span></span>
               </span>
             </span>
-            
+
           </div>
         </v-row>
         <v-row no-gutters>
@@ -56,14 +56,14 @@
             </SongList>
           </v-col>
           <v-col>
-            <display-song 
+            <display-song
               :song="displaySong"
               @playlist-added="addToPlaylist"/>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
-    
+
   </v-app>
 </template>
 
@@ -87,7 +87,9 @@ export default {
   created() {
     this.$store.dispatch('songs/getCategories')
     this.$store.dispatch('songs/getSongs')
-
+    if (this.$route.params.slug) {
+      this.$store.dispatch('songs/getSong', this.$route.params.slug)
+    }
   },
   data() {
     return {
@@ -107,8 +109,9 @@ export default {
     loadCategories(categories) {
       this.$store.dispatch('songs/getSongs', { category: categories })
     },
-    loadSong(song) {
-      this.$store.dispatch('songs/setSong', song)
+    loadSong(slug) {
+      this.$router.push({ name: 'home', params: { slug } })
+      // this.$store.dispatch('songs/setSong', slug)
     },
     findByTerms({ search, slug }) {
       if (slug) {
@@ -119,6 +122,11 @@ export default {
     },
     addToPlaylist(song) {
       this.$store.dispatch('playlist/add', song)
+    }
+  },
+  watch: {
+    $route(to) {
+      this.$store.dispatch('songs/getSong', to.params.slug)
     }
   }
 }
@@ -193,7 +201,7 @@ export default {
       margin-left: -3px;
       background-color: var(--v-primary-base);
     }
-    
+
   }
 }
 

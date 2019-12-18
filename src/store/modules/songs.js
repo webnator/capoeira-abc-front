@@ -27,12 +27,14 @@ const actions = {
     const displaySong = await musicApi.getSong(slug);
     commit('setSong', displaySong)
     commit('setExplicit', true)
+    musicApi.songViewed(displaySong.slug)
 
     const songs = await musicApi.getSongs({ category: displaySong.category });
     commit('setSongs', songs)
   },
   async setSong({ commit, state }, slug) {
     const localSong = state.songs.find(song => song.slug === slug)
+    musicApi.songViewed(localSong.slug)
     commit('setSong', localSong)
     commit('setExplicit', true)
   }

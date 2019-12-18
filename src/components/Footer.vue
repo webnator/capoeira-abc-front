@@ -8,7 +8,7 @@
     >
       <v-card-text>
         <span>
-          {{ new Date().getFullYear() }} — <strong>@webnator</strong>
+          {{ new Date().getFullYear() }} — <strong>ABC Capoeira</strong>
         </span>
       </v-card-text>
     </v-card>

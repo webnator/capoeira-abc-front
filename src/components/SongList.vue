@@ -11,7 +11,7 @@
             tile
           >
             <v-card-title>
-              <div 
+              <div
                 v-bind:class="{ selected: song.slug === selectedSong.slug }"
               >
                 <div>{{song.title}}</div>
@@ -31,11 +31,11 @@
 
 export default {
   name: 'SongsList',
-  props: { 
+  props: {
     songs: Array,
     selectedSong: {
       type: Object,
-      default: () => ({}) 
+      default: () => ({})
     }
   },
   data() {
@@ -65,11 +65,11 @@ export default {
   .v-card__title {
     padding: 5px 0px 5px 16px;
 
-    
+
 
     div.selected {
       display: inline-grid;
-      
+
       &::before {
         content: "";
         width: calc(100% + 10px);
@@ -90,7 +90,7 @@ export default {
         100% { width: calc(100% + 10px); }
       }
       div {
-        z-index: 1;  
+        z-index: 1;
       }
     }
   }

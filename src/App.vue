@@ -1,6 +1,8 @@
 <template class="amber">
   <div id="app">
-    <router-view/>
+    <transition name="fade">
+      <router-view/>
+    </transition>
     <Footer></Footer>
     <Player></Player>
   </div>
@@ -49,7 +51,7 @@ export default {
       z-index: 0;
     }
     span {
-      z-index: 1;  
+      z-index: 1;
     }
   }
 }

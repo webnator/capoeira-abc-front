@@ -7,7 +7,7 @@ import Contact from '../views/Contact.vue'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/home',
+  path: '/home/:slug?',
   name: 'home',
   component: Home
 }, {
@@ -20,8 +20,7 @@ const routes = [{
   component: Contact
 }, {
   path: '*',
-  name: 'any',
-  component: Home
+  redirect: { name: 'home' },
 }]
 
 const router = new VueRouter({
