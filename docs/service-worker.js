@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vue-front/precache-manifest.d66d8e3dd0f2cdd7510c6b37d7006569.js"
+  "/capoeira-abc-front/precache-manifest.6e7179ec1f890130b9209931a50a1e74.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "capo-app-js"});
+workbox.core.setCacheNameDetails({prefix: "capoeira-abc-front"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
