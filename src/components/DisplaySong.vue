@@ -17,18 +17,14 @@
         <span style="white-space: pre-line" v-html="song.lyrics"></span>
       </div>
     </div>
-    <div v-else>
-      Loading...
-    </div>
+    <div v-else v-t="'loading'"/>
     <v-snackbar
       v-model="added"
       :bottom="true"
       :timeout="2000"
     >
       <span v-t="'added_playlist'"/>
-      <v-btn text dark @click="snackbar = false">
-        Close
-      </v-btn>
+      <v-btn text dark @click="snackbar = false" v-t="'close'"/>
     </v-snackbar>
   </div>
 </template>

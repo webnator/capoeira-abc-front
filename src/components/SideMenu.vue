@@ -3,9 +3,9 @@
     <div class="btn-container">
       <v-list>
         <v-list-item-group>
-          <v-list-item @click="navigate('home')" v-t="'home'"></v-list-item>
-          <v-list-item @click="navigate('about')" v-t="'about'"></v-list-item>
-          <v-list-item @click="navigate('contact')" v-t="'contact'"></v-list-item>
+          <v-list-item @click="navigate('/home')" v-t="'home'"></v-list-item>
+          <v-list-item @click="navigate('/about')" v-t="'about'"></v-list-item>
+          <v-list-item @click="navigate('/contact')" v-t="'contact'"></v-list-item>
         </v-list-item-group>
         <v-divider></v-divider>
         <v-list-item-group>
@@ -50,7 +50,7 @@ export default {
       this.shown = !this.shown
     },
     navigate(route) {
-      this.$router.push(route)
+      this.$router.push({ path: route })
       this.shown = false
     },
     chooseLang(lang) {

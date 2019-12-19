@@ -4,6 +4,8 @@
   "about": "Acerca de",
   "contact": "Contacto",
   "added_playlist": "Añadido a la lista",
+  "loading": "Cargando...",
+  "close": "Cerrar",
   "about_page": {
     "paragraphs": [
       "Bienvenidos a este rincón donde encontrar y compartir letras y música de Capoeira.",
@@ -24,5 +26,17 @@
     "contact_call": "escríbeme",
     "tech_info": "Para los más técnicos, este proyecto ha sido desarrollado utilizando Golang para el backend con el framework Gin, en el frontend experimentando un poco con VueJS, y una base de datos mongo. Es mi primer acercamiento poniendo estas tecnologías en \"producción\" así que cualquier sugerencia, consejo o queja es más que bien recibido.<br/><br/>Este proyecto se encuentra hosteado de forma gratuita en Heroku y Github pages, y el código fuente completo está disponible en mi Github -> <a href=\"http://github.com/webnator\" target=\"_blank\">http://github.com/webnator</a>",
     "final_message": "Espero disfruten!"
+  },
+  "contact_page": {
+    "paragraphs": [
+      "Este proyecto está pensado para ser colaborativo, así que con un poco de ayuda de todos, podemos llevarlo a ser mucho mejor.",
+      "Para contactar conmigo no hay formularios complicados, ni sistemas de tickets, ni chats molestos. ",
+      "Es bastante fácil, aquí tienes mi email:",
+      "Cualquier duda, queja, sugerencia, opinión, solicitud de colaboración, errores con canciones, etc. No dudes en escribir."
+    ],
+    "email": "mail.abccapoeira@gmail.com"
+  },
+  "errors": {
+    "no_songs": "No se pudieron cargar las canciones :("
   }
 }

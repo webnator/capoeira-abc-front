@@ -8,7 +8,7 @@
     >
       <v-card-text>
         <span>
-          {{ new Date().getFullYear() }} — <strong>ABC Capoeira</strong>
+          {{ new Date().getFullYear() }} — <strong>ABC Capoeira</strong> — <router-link to="/contact" v-t="'contact'"/>
         </span>
       </v-card-text>
     </v-card>

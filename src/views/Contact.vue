@@ -37,16 +37,32 @@
             
           </div>
         </v-row>
-        <v-row no-gutters>
-          <v-col>
+        <v-row 
+          class="mb-6"
+          justify="center"
+          no-gutters>
+          <v-col md="6">
             <div>
               <div class="title font-weight-black">
                 <span v-t="'contact'"></span>
               </div>
             </div>
-            Si quieres colaborar con este proyecto
-            Si tienes alguna queja o sugerencia
-            Si tienes alguna duda
+            <div class="content">
+              <span v-html="$t('contact_page.paragraphs[0]')"/>
+              <br/><br/>
+
+              <span v-html="$t('contact_page.paragraphs[1]')"/>
+              <br/><br/>
+              
+              <span v-html="$t('contact_page.paragraphs[2]')"/>
+              <br/>
+
+              <a :href="'mailto:' + $t('contact_page.email')" v-t="'contact_page.email'"/>
+              <br/><br/>
+
+              <span v-html="$t('contact_page.paragraphs[3]')"/>
+            </div>
+            
           </v-col>
         </v-row>
       </v-container>
@@ -81,6 +97,19 @@ export default {
   margin-top: 20px;
   margin-left: 2%;
   border-radius: 0px 0px 10px 10px;
+}
+
+.content {
+  text-align: left;
+
+  a {
+    color: var(--v-accent-base) !important;
+    font-weight: bold;
+    &:hover {
+      color: var(--v-secondary-base) !important;
+      background-color: var(--v-accent-base);
+    }
+  }
 }
 
 .divider {

@@ -1,9 +1,7 @@
 <template>
   <div class="songs-list">
     <v-container>
-      <v-row v-if="!songs || songs.length <= 0">
-        No songs found :(
-      </v-row>
+      <v-row v-if="!songs || songs.length <= 0" v-t="'errors.no_songs'"/>
       <v-row v-for="(song, index) of songs" :key="index" dense>
         <v-col cols="12">
           <v-card

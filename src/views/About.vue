@@ -41,7 +41,7 @@
           class="mb-6"
           justify="center"
           no-gutters>
-          <v-col lg="6">
+          <v-col md="6">
             <div>
               <div class="title font-weight-black">
                 <span v-t="'about'"></span>
